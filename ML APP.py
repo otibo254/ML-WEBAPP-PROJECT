@@ -19,7 +19,7 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
 #Setting my model's title
-st.title("Breezie WebApp.")
+st.title("Breezie WebApp💫💫.")
 
 def main():
     activities=['EDA','Visualisation','model','About us']
