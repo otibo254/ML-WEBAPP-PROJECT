@@ -19,38 +19,39 @@ from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import accuracy_score
 
 #Setting my model's title
+st.caption("Breezie Foundation.")
 st.title("Breezie WebApp💫💫.")
 
 def main():
-    activities=['EDA','Visualisation','model','About us']
-    option=st.sidebar.selectbox("Select option:",activities)
+    categories=['Data Analysation','Visual Display','Model','AboutUs']
+    category=st.selectbox("Select category:",categories)
     
-    if option=='EDA':
-        st.subheader("Exploratory Data Analysis")
+    if categories=='Data Analysation':
+        st.subheader("Analyze data effectively.")
         
         data=st.file_uploader("Upload dataset:",type=['csv'])
-        st.success("Data successfully loaded")
+        st.success("Data successfully loaded.🎇")
         if data is not None:
             df=pd.read_csv(data)
             st.dataframe(df.head(10))
             
-            if st.checkbox("Display shape"):
-                st.write(df.shape)
-            if st.checkbox("Display columns"):
+            if st.checkbox("Columns count"):
                 st.write(df.columns)
-            if st.checkbox("Display Null values"):
+            if st.checkbox("Number of rows and Cols"):
+                st.write(df.shape)
+            if st.checkbox("Checking empty(null) columns"):
                 st.write(df.isnull().sum())
-            if st.checkbox("Select multiple columns"):
-                selected_columns=st.multiselect("Select preffered columns, N/B Let target be  the last column of selection:",df.columns)
+            if st.checkbox("Multiple columns Selection"):
+                selected_columns=st.multiselect("Select columns of choice for analysis, N/B Let target be  the last column of selection:",df.columns)
                 df1=df[selected_columns]
                 st.dataframe(df1)
             
-            if st.checkbox("Display summary"):
+            if st.checkbox("Summarized Display"):
                 st.write(df1.describe().T)
             
         
-    elif option=='Visualisation':
-        st.subheader("Data visualisation")
+    elif categories =='Visual Display':
+        st.subheader("Visually analyze the data")
         
         data=st.file_uploader("Upload dataset:",type=['csv'])
         st.success("Data successfully loaded")
@@ -58,24 +59,23 @@ def main():
             df=pd.read_csv(data)
             st.dataframe(df.head(10))
             
-        if st.checkbox("Select multiple columns to plot"):
-            selected_columns=st.multiselect("Select your prefferd columns",df.columns)
+        if st.checkbox("Multiple Columns Selection for Plot"):
+            selected_columns=st.multiselect("Select columns of choice for plotting, N/B Let target be  the last column of selection:",df.columns)
             df1=df[selected_columns]
             st.dataframe(df1)
             
-        if st.checkbox("Display barchart"):
+        if st.checkbox("Bar Display"):
             st.bar_chart(df1)
-        if st.checkbox("Dispay line chart"):
-            st.line_chart(df1)
-        if st.checkbox("Display Pie Chart"):
+        
+        if st.checkbox("Pie Display"):
             all_columns=df.columns.to_list()
-            pie_columns=st.selectbox("Select column to display", all_columns)
+            pie_columns=st.selectbox("Select Column for Display:", all_columns)
             pieChart=df[pie_columns].value_counts().plot.pie(autopct="%1.1f%%")
             st.write(pieChart)
             st.pyplot()
             
             
-    elif option=="model":
+    elif categories =="Model":
         st.subheader("Model Building")
         
         data=st.file_uploader("Upload dataset:",type=['csv'])
@@ -142,12 +142,13 @@ def main():
         
 
     else:
-        st.write(""" ## This is a well designed and interactive webapp for machine learning deployment projects. Feel free to use it.""")
-        st.write(""" ## Created and designed by Breezie Foundation.""")
-        st.write(""" ## Contact: 0700 495 575. """)
-        st.write(""" ## Email: steviebreezie35@gmail.com. """)
+        st.write(""" ###### This is a well designed and interactive webapp for machine learning deployment projects. Feel free to use it.""")
+        st.write(""" ###### Created and designed by Breezie Foundation.""")
+        st.write(""" ###### Contact: 0700 495 575. """)
+        st.write(""" ###### Email: steviebreezie35@gmail.com. """)
         
         
         
 if __name__ == '__main__':
     main()
+    
